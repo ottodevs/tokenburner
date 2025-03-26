@@ -1,26 +1,277 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
+@layer theme, base, components, utilities;
+
+/* Make theme values available as CSS variables */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
-@media (prefers-color-scheme: dark) {
+@layer theme {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --radius: 0.625rem;
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.147 0.004 49.25);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.147 0.004 49.25);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.147 0.004 49.25);
+    --primary: oklch(0.216 0.006 56.043);
+    --primary-foreground: oklch(0.985 0.001 106.423);
+    --secondary: oklch(0.97 0.001 106.424);
+    --secondary-foreground: oklch(0.216 0.006 56.043);
+    --muted: oklch(0.97 0.001 106.424);
+    --muted-foreground: oklch(0.553 0.013 58.071);
+    --accent: oklch(0.97 0.001 106.424);
+    --accent-foreground: oklch(0.216 0.006 56.043);
+    --destructive: oklch(0.577 0.245 27.325);
+    --border: oklch(0.923 0.003 48.717);
+    --input: oklch(0.923 0.003 48.717);
+    --ring: oklch(0.709 0.01 56.259);
+    
+    /* Chart colors */
+    --chart-1: oklch(0.646 0.222 41.116);
+    --chart-2: oklch(0.6 0.118 184.704);
+    --chart-3: oklch(0.398 0.07 227.392);
+    --chart-4: oklch(0.828 0.189 84.429);
+    --chart-5: oklch(0.769 0.188 70.08);
+    
+    /* Sidebar colors */
+    --sidebar: oklch(0.985 0.001 106.423);
+    --sidebar-foreground: oklch(0.147 0.004 49.25);
+    --sidebar-primary: oklch(0.216 0.006 56.043);
+    --sidebar-primary-foreground: oklch(0.985 0.001 106.423);
+    --sidebar-accent: oklch(0.97 0.001 106.424);
+    --sidebar-accent-foreground: oklch(0.216 0.006 56.043);
+    --sidebar-border: oklch(0.923 0.003 48.717);
+    --sidebar-ring: oklch(0.709 0.01 56.259);
+
+    /* Animation properties */
+    --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
+    --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  .dark {
+    --background: oklch(0.147 0.004 49.25);
+    --foreground: oklch(0.985 0.001 106.423);
+    --card: oklch(0.216 0.006 56.043);
+    --card-foreground: oklch(0.985 0.001 106.423);
+    --popover: oklch(0.216 0.006 56.043);
+    --popover-foreground: oklch(0.985 0.001 106.423);
+    --primary: oklch(0.923 0.003 48.717);
+    --primary-foreground: oklch(0.216 0.006 56.043);
+    --secondary: oklch(0.268 0.007 34.298);
+    --secondary-foreground: oklch(0.985 0.001 106.423);
+    --muted: oklch(0.268 0.007 34.298);
+    --muted-foreground: oklch(0.709 0.01 56.259);
+    --accent: oklch(0.268 0.007 34.298);
+    --accent-foreground: oklch(0.985 0.001 106.423);
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.553 0.013 58.071);
+    
+    /* Chart colors - Dark mode */
+    --chart-1: oklch(0.488 0.243 264.376);
+    --chart-2: oklch(0.696 0.17 162.48);
+    --chart-3: oklch(0.769 0.188 70.08);
+    --chart-4: oklch(0.627 0.265 303.9);
+    --chart-5: oklch(0.645 0.246 16.439);
+    
+    /* Sidebar colors - Dark mode */
+    --sidebar: oklch(0.216 0.006 56.043);
+    --sidebar-foreground: oklch(0.985 0.001 106.423);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0.001 106.423);
+    --sidebar-accent: oklch(0.268 0.007 34.298);
+    --sidebar-accent-foreground: oklch(0.985 0.001 106.423);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.553 0.013 58.071);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Custom font classes */
+  .font-cinzel {
+    font-family: var(--font-cinzel), serif;
+  }
+  .font-montserrat {
+    font-family: var(--font-montserrat), sans-serif;
+  }
+}
+
+@layer components {
+  /* Card with 3D effect */
+  .card-3d-hover {
+    transform-style: preserve-3d;
+    transition: all 0.3s var(--ease-snappy);
+    perspective: 1000px;
+    
+    &:hover {
+      transform: translateZ(10px) rotateX(2deg) rotateY(2deg);
+      box-shadow: 
+        0 5px 15px color-mix(in oklab, var(--background) 30%, transparent),
+        0 0 40px color-mix(in oklab, var(--primary) 20%, transparent);
+    }
+  }
+
+  /* Custom scrollbar */
+  .scrollbar-thin {
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: color-mix(in oklab, var(--background) 95%, var(--foreground));
+      border-radius: 3px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      
+      &:hover {
+        background: color-mix(in oklab, var(--primary) 80%, var(--background));
+      }
+    }
+  }
+
+  /* Button with burn effect */
+  .burn-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s var(--ease-fluid);
+    
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      translate: -100% 0;
+      background: linear-gradient(
+        90deg, 
+        transparent,
+        color-mix(in oklab, var(--foreground) 20%, transparent),
+        transparent
+      );
+      transition: translate 0.6s var(--ease-fluid);
+    }
+    
+    &:hover::before {
+      translate: 100% 0;
+    }
+    
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(
+        90deg,
+        var(--primary),
+        var(--accent),
+        var(--primary)
+      );
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s var(--ease-snappy);
+    }
+    
+    &:hover::after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+@layer utilities {
+  /* Fire shadow effect */
+  @property --fire-shadow {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: transparent;
+  }
+
+  .fire-shadow {
+    --fire-shadow: color-mix(in oklab, var(--primary) 70%, transparent);
+    transition: --fire-shadow 0.3s;
+    
+    &:hover {
+      animation: fire 1.5s infinite;
+    }
+  }
+
+  @keyframes fire {
+    0%, 100% {
+      box-shadow: 0 0 5px 0px var(--fire-shadow);
+    }
+    50% {
+      --fire-shadow: color-mix(in oklab, var(--primary) 90%, transparent);
+      box-shadow: 0 0 15px 5px var(--fire-shadow);
+    }
+  }
+
+  /* Flame text effect */
+  .flame-text {
+    --glow-color: var(--primary);
+    text-shadow: 
+      0 0 4px var(--background),
+      0 0 11px var(--background),
+      0 0 19px var(--background),
+      0 0 40px var(--glow-color),
+      0 0 80px var(--glow-color),
+      0 0 90px var(--glow-color),
+      0 0 100px var(--glow-color),
+      0 0 150px var(--glow-color);
+    animation: flame-pulse 2s infinite alternate;
+  }
+
+  @keyframes flame-pulse {
+    0% {
+      --glow-color: var(--primary);
+    }
+    100% {
+      --glow-color: var(--accent);
+    }
+  }
 }
