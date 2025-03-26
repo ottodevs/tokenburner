@@ -11,6 +11,7 @@ export function SiteFooter() {
             fill
             className="object-contain"
             priority
+            sizes="(max-width: 768px) 100vw, 48px"
           />
         </div>
       </div>
