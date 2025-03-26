@@ -61,12 +61,12 @@ export function BurnHistory() {
       );
     });
   };
-
+  
   // Use Blockscan.com which works across all chains
   const getTransactionUrl = (txHash: string) => {
     return `https://blockscan.com/tx/${txHash}`;
   };
-
+  
   // Determine user rank based on number of burns
   const getRank = (burnCount: number) => {
     if (burnCount >= 15) return { name: "Demon Lord", color: "text-red-300", icon: <Star className="h-5 w-5 text-red-300" /> };
@@ -75,7 +75,7 @@ export function BurnHistory() {
     if (burnCount >= 3) return { name: "Flame Apprentice", color: "text-orange-300", icon: <Star className="h-5 w-5 text-orange-300" /> };
     return { name: "Novice Burner", color: "text-orange-400", icon: <Star className="h-5 w-5 text-orange-400" /> };
   };
-
+  
   // Use uniqueHistory length for rank calculation
   const currentRank = getRank(uniqueHistory.length);
   
@@ -88,7 +88,7 @@ export function BurnHistory() {
     if (burnCount >= 1) return Math.min(100, ((burnCount - 1) / 2) * 100); // Progress to Flame Apprentice
     return 0; // No progress yet
   };
-
+  
   const progressPercent = getProgressToNextRank(uniqueHistory.length);
   
   // Get next rank name
@@ -100,33 +100,34 @@ export function BurnHistory() {
     if (burnCount >= 1) return "Flame Apprentice";
     return "Novice Burner";
   };
-
+  
   const nextRank = getNextRankName(uniqueHistory.length);
-
+  
+  const url = process.env.NEXT_PUBLIC_APP_URL as string;
+  
   // Format sharing text for social media
   const getShareText = () => {
     const emoji = uniqueHistory.length >= 15 ? '🔥👑' : 
-                 uniqueHistory.length >= 10 ? '🔥🌟' : 
+    uniqueHistory.length >= 10 ? '🔥🌟' : 
                  uniqueHistory.length >= 5 ? '🔥✨' : '🔥';
     
-    const achievementText = `${emoji} Achievement Unlocked: ${currentRank.name}!\n\n`;
-    const statsText = `🏆 Tokens Burned: ${uniqueHistory.length}\n💎 Total Value: ${totalBurned.toFixed(2)}\n`;
-    const callToAction = `\n🌐 Join me in cleaning up the blockchain:\n`;
+                 const achievementText = `${emoji} Achievement Unlocked: ${currentRank.name}!\n\n`;
+                 const statsText = `🏆 Tokens Burned: ${uniqueHistory.length}\n💎 Total Value: ${totalBurned.toFixed(2)}\n`;
+                 const callToAction = `\n🌐 Join me in cleaning up the blockchain:\n`;
     const hashtags = `\n#TokenBurner #DeFi #CleanBlockchain`;
-
-    return `${achievementText}${statsText}${callToAction}tokenburner.vercel.app${hashtags}`;
+    
+    return `${achievementText}${statsText}${callToAction}${hashtags}`;
   };
 
   // Share to Twitter/X
   const shareToTwitter = () => {
     const text = getShareText();
-    const url = 'https://tokenburner.vercel.app'; // Replace with your actual URL
     window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
   };
-
+  
   // Share to Warpcast
   const shareToWarpcast = () => {
-    const text = getShareText();
+    const text = getShareText().concat(`\n${url}`);
     window.open(`https://warpcast.com/~/compose?text=${encodeURIComponent(text)}`, '_blank');
   };
 
