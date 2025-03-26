@@ -30,13 +30,12 @@ export async function GET() {
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: '#030711', // bg-gray-950
-            backgroundImage: 'radial-gradient(circle at center, #7c2d12 0%, #030711 70%)', // Matching your app's gradient
+            backgroundImage: 'radial-gradient(circle at center, #7c2d12 0%, #030711 70%)',
             fontFamily: 'Cinzel Decorative',
-            // position: 'relative',
-            // overflow: 'hidden',
+            gap: '10px',
           }}
         >
-          {/* Background Effects - Similar to your app's styling */}
+          {/* Background Effects */}
           <div
             style={{
               position: 'absolute',
@@ -114,9 +113,9 @@ export async function GET() {
               alignItems: 'center',
               justifyContent: 'center',
               padding: '40px',
-              gap: '10px',
               position: 'relative',
               zIndex: 1,
+              gap: '20px',
             }}
           >
             {/* Logo */}
@@ -125,7 +124,6 @@ export async function GET() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                marginBottom: '32px',
                 width: '160px',
                 height: '160px',
                 position: 'relative',
@@ -135,8 +133,8 @@ export async function GET() {
               <img
                 src={`${process.env.NEXT_PUBLIC_APP_URL}/logo.png`}
                 alt="Token Burner Logo"
-                width="400"
-                height="400"
+                width="300"
+                height="300"
                 style={{
                   filter: 'drop-shadow(0 0 20px rgba(249, 115, 22, 0.4))', // orange-500 glow
                 }}
@@ -147,13 +145,13 @@ export async function GET() {
             <div
               style={{
                 display: 'flex',
-                fontSize: 75,
+                fontSize: 59,
                 fontWeight: 700,
                 color: '#f97316', // text-orange-500
-                marginBottom: '24px',
                 textAlign: 'center',
                 textShadow: '0 0 20px rgba(249, 115, 22, 0.4)', // Matching the glow effect
                 letterSpacing: '-0.02em',
+                maxWidth: '70%',
               }}
             >
               Inferno Token Burner
@@ -163,14 +161,23 @@ export async function GET() {
             <div
               style={{
                 display: 'flex',
-                fontSize: 40,
+                fontSize: 42,
                 fontWeight: 500,
                 color: '#fdba74', // text-orange-200
                 textAlign: 'center',
-                marginTop: '16px',
-                maxWidth: '800px',
-                lineHeight: 1.4,
-                textShadow: '0 2px 4px rgba(0,0,0,0.5)',
+                maxWidth: '70%',
+                padding: '10px',
+                borderRadius: '10px',
+                background: 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%)',
+                textShadow: `
+                  0 2px 4px rgba(0,0,0,0.8),
+                  0 4px 8px rgba(0,0,0,0.6),
+                  0 8px 16px rgba(0,0,0,0.4),
+                  0 12px 24px rgba(249, 115, 22, 0.2)
+                `, // Multiple layered shadows for depth
+                backdropFilter: 'blur(4px)', // Slight blur effect behind text
+                WebkitBackdropFilter: 'blur(4px)', // For Safari support
+                border: '1px solid rgba(249, 115, 22, 0.1)', // Subtle orange border
               }}
             >
               Burn unwanted spam tokens from your wallet with style
