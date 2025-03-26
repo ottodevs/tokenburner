@@ -110,6 +110,15 @@ export function HelpSection() {
                     <li>
                       Visit{" "}
                       <a
+                        href="https://blockscan.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-400 hover:underline"
+                      >
+                        Blockscan
+                      </a>{" "}
+                      (multi-chain explorer),{" "}
+                      <a
                         href="https://etherscan.io"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -153,13 +162,13 @@ export function HelpSection() {
             <AccordionTrigger className="text-orange-200 hover:text-orange-100 font-medium">
               <div className="flex items-center">
                 <Trophy className="h-5 w-5 mr-2 text-yellow-500" />
-                Combos and Sharing
+                Combos and History
               </div>
             </AccordionTrigger>
             <AccordionContent className="text-orange-200">
               <p className="mb-2">
                 Every time you burn a token, your combo count increases! The more tokens you burn in a session, the
-                higher your rank becomes:
+                higher your rank becomes. Your burn history and achievements are saved locally in your browser.
               </p>
               <ul className="list-disc pl-5 space-y-1 mb-2">
                 <li>
@@ -177,6 +186,15 @@ export function HelpSection() {
                 <li>
                   <span className="text-red-300 font-medium">Demon Lord</span>: 15+ tokens
                 </li>
+              </ul>
+              <p className="mb-2">
+                Your burn history, including transaction IDs and achievements, is saved locally in your browser. You can:
+              </p>
+              <ul className="list-disc pl-5 space-y-1 mb-2">
+                <li>Track your total tokens burned</li>
+                <li>View your burn history with timestamps</li>
+                <li>Access transaction links on block explorers</li>
+                <li>Clear your data anytime for privacy</li>
               </ul>
               <p>
                 Show off your burning skills by sharing your achievements on X (Twitter) or Warpcast! The more tokens
