@@ -20,19 +20,55 @@ const cinzel = Cinzel_Decorative({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://tokenburner.vercel.app'),
+  metadataBase: new URL('https://tokenburner.vercel.app'),
   title: "Inferno Token Burner",
   description: "Burn unwanted spam tokens from your wallet with style. Send those pesky spam tokens straight to hell!",
+  keywords: ["token burner", "crypto", "ethereum", "web3", "spam tokens", "token cleanup"],
+  authors: [{ name: "ottodevs" }],
   openGraph: {
+    type: "website",
     title: "Inferno Token Burner",
     description: "Burn unwanted spam tokens from your wallet with style",
-    images: [`/api/og`],
+    url: "https://tokenburner.vercel.app",
+    siteName: "Inferno Token Burner",
+    images: [
+      {
+        url: "/api/og",
+        width: 1200,
+        height: 630,
+        alt: "Inferno Token Burner Preview",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Inferno Token Burner",
     description: "Burn unwanted spam tokens from your wallet with style",
-    images: [`/api/og`],
+    creator: "@ottodevs",
+    images: [
+      {
+        url: "/api/og",
+        width: 1200,
+        height: 630,
+        alt: "Inferno Token Burner Preview",
+      },
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
   },
 }
 
