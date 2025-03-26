@@ -1,5 +1,4 @@
 import { ImageResponse } from '@vercel/og'
-import Image from 'next/image'
 
 export const runtime = 'edge'
 
@@ -26,15 +25,11 @@ export async function GET() {
               alignItems: 'center',
               justifyContent: 'center',
               marginBottom: '20px',
+              width: '120px',
+              height: '120px',
+              background: 'url(https://tokenburner.vercel.app/logo.png) center/contain no-repeat',
             }}
-          >
-            <Image
-              src={`${process.env.NEXT_PUBLIC_APP_URL}/logo.png`}
-              alt="Token Burner Logo"
-              width="120"
-              height="120"
-            />
-          </div>
+          />
 
           {/* Title */}
           <div
@@ -45,6 +40,7 @@ export async function GET() {
               color: '#f97316',
               marginBottom: '20px',
               textAlign: 'center',
+              fontWeight: 'bold',
             }}
           >
             Inferno Token Burner
